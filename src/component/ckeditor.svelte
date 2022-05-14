@@ -30,7 +30,7 @@
 		// If value is passed then add it to config
 		if (value) {
 			Object.assign(config, {
-			initialData: value
+			placeholder: value
 			});
 		}
 		// Get dom element to mount initialised editor instance

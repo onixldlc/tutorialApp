@@ -3,43 +3,9 @@
 	import CkEditor5 from "./ckeditor.svelte"
 
 	let editor=BalloonEditor;
-	let questionData = "question";
-	let answrData = "data";
+	let questionData = "";
+	let answrData = "";
 	
-
-
-	// setTimeout(async()=>{
-	//     await BalloonEditor.create( editor )
-	//     .then( editor => {
-	//         console.log( 'Editor was initialized', editor );
-	//         document.body.appendChild( editor.ui.element );
-	//     } )
-	//     .catch( err => {
-	//         console.error( err.stack );
-	//     } );
-	// }, 1000)
-
-	// onMount(async ()=>{
-	//     var editor = document.querySelector("editorInstance");
-	//     var ckEditor = await BalloonEditor.create("test");
-	//     editor = ckEditor.ui.element
-	// })
-
-
-
-	// async function createCkEditor(){
-		// console.log(document)
-		// await BalloonEditor.create( "test" )
-		// .then( editor => {
-		//     console.log( 'Editor was initialized', editor );
-		//     document.body.appendChild( editor.ui.element );
-		// } )
-		// .catch( err => {
-		//     console.error( err.stack );
-		// } );
-	// }
-
-
 	let question:String = "";
 	let answr:String = "";
 
@@ -52,22 +18,6 @@
 	export let height:String = "fit-content";
 
 	console.log(document.getElementsByClassName("editorInstance"))
-
-	function onReady({ detail: editor }) {
-		// editor.ui
-		// .getEditableElement()
-		// .parentElement.insertBefore(
-		// 	editor.ui.view.toolbar.element,
-		// 	editor.ui.getEditableElement()
-		// );
-	}
-
-	// afterUpdate(async ()=>{
-		// console.log(document)
-		// var list = await Array.from(document.querySelectorAll( ".editorInstance" ))
-		// console.log(list)
-	// })
-
 
 </script>
 
@@ -84,12 +34,10 @@
 
 	<CkEditor5
 		bind:editor
-		on:ready={onReady}
 		bind:value={questionData}
 	/>
 	<CkEditor5
 		bind:editor
-		on:ready={onReady}
 		bind:value={answrData}
 	/>
 
@@ -98,7 +46,6 @@
 <style>
 	.card{
 		text-align: left;
-		/* outline: 1px solid black; */
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
@@ -110,10 +57,6 @@
 		padding-left: 15px;
 		padding-right: 15px;
 	}
-
-	/* .card .container textarea:focus::placeholder{
-		color: transparent;
-	} */
 
 	.card .container textarea::placeholder{
 		text-align: center;
