@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-balloon": "^34.0.0",
+    "@ckeditor/ckeditor5-upload": "^34.0.0",
     "@tauri-apps/api": "^1.0.0-rc.5",
     "just-debounce-it": "^3.0.1",
     "sirv-cli": "^2.0.0"

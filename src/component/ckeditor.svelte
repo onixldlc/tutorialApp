@@ -1,4 +1,9 @@
-<script>
+<script lang="ts">
+	// import base64uploadadapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
+	// import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+	// import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert';
+	// import AutoImage from '@ckeditor/ckeditor5-image/src/autoimage';
+
 	import { onMount, onDestroy, createEventDispatcher } from "svelte";
 	import debounce from "just-debounce-it";
 	import {randomId} from "./helper"
@@ -30,7 +35,9 @@
 		// If value is passed then add it to config
 		if (value) {
 			Object.assign(config, {
-			placeholder: value
+			placeholder: value,
+			// toolbar:["heading","|","bold","italic","link","bulletedList","numberedList","|","outdent","indent","|","uploadImage","blockQuote","insertTable","mediaEmbed","undo","redo","insertImage"],
+			// Plugin: [AutoImage]
 			});
 		}
 		// Get dom element to mount initialised editor instance
@@ -40,6 +47,8 @@
 			.then(editor => {
 				// Save the reference to the instance for future use.
 				instance = editor;
+				// console.log(instance)
+				console.log(Array.from( instance.ui.componentFactory.names() ))
 				// Set initial disabled state.
 				editor.readOnly = disabled;
 				// Let the world know the editor is ready.
@@ -83,4 +92,4 @@
 	}
 	</script>
 	
-	<div id="{divName}" />
+	<div id="{divName}" class="editor" />

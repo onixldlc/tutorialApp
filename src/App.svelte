@@ -1,7 +1,7 @@
 <script lang="ts">
 	import InputCard from "./component/input.svelte";
 	import "./app.css"
-	// export let name: String;
+	export let name: String;
 </script>
 
 <main>
