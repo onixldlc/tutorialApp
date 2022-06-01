@@ -1,11 +1,13 @@
 <script lang="ts">
 	import InputCard from "./component/input.svelte";
+	import OutputCard from "./component/output.svelte";
 	import "./app.css"
-	export let name: String;
 </script>
 
 <main>
-	<InputCard/>
+	<!-- <InputCard/> -->
+	<OutputCard/>
+
 	<!-- <h1>Hello {name}!</h1> -->
 	<!-- <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p> -->
 </main>

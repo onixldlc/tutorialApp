@@ -7,7 +7,6 @@
 	export let editor = null;
 	export let value = "";
 	export let config = () => ({});
-	export let disabled = false;
 
 	// Instance variables
 	let divName = randomId()
@@ -15,25 +14,14 @@
 	let lastEditorData = "";
 	let editorElement;
 
-	const INPUT_EVENT_DEBOUNCE_WAIT = 300;
 	const dispatch = createEventDispatcher();
 
-	$: watchValue(value);
-	
-	function watchValue(x) {
-		if (instance && x !== lastEditorData) {
-			instance.setData(x);
-		}
-	}
-
 	onMount(() => {
-		// If value is passed then add it to config
 		if (value) {
 			Object.assign(config, {
-			placeholder: value,
+			initialData: value
 			});
 		}
-		// Get dom element to mount initialised editor instance
 		editorElement = document.getElementById(divName);
 		editor
 			.create(editorElement, config)
@@ -43,7 +31,10 @@
 				// console.log(instance)
 				console.log(Array.from( instance.ui.componentFactory.names() ))
 				// Set initial disabled state.
-				editor.readOnly = disabled;
+                editor.enableReadOnlyMode(editor.id)
+                console.log(editor.isReadOnly)
+				// editor.isReadOnly = true;
+
 				// Let the world know the editor is ready.
 				dispatch("ready", editor);
 				setUpEditorEvents();
@@ -72,10 +63,6 @@
 		};
 		// Debounce emitting the #input event. When data is huge, instance#getData()
 		// takes a lot of time to execute on every single key press and ruins the UX.
-		instance.model.document.on(
-			"change:data",
-			debounce(emitInputEvent, INPUT_EVENT_DEBOUNCE_WAIT)
-		);
 		instance.editing.view.document.on("focus", evt => {
 			dispatch("focus", { evt, instance });
 		});
